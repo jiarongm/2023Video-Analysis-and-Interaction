@@ -9,21 +9,11 @@ while True:
         print("can't recive frame")
         break
     cv2.imshow('frame',frame)
-    
-    b,g,r=cv2.split(frame)
-    temp=b
-    b=g
-    g=temp
-    exchange=cv2.merge((b,g,r))
-    cv2.imshow('exchange',exchange)
-
-    b[:]=0
-    g[:]=0
-    r_color=cv2.merge((b,g,r))
-    cv2.imshow('R_color',r_color)
-    
-    
+    if cv2.waitKey(1)==ord('s'):
+        print("----Start to save video.---\n")
+        fourcc= cv2.VideoWriter_fourcc('DIVX')  # 設定儲存的格式
+        cv2.VideoWriter('save_video',fourcc,20.0,(680,480),1)
     if cv2.waitKey(1)==ord('q'):
+        cap.release()
+        cv2.destroyAllWindows()
         break
-cap.release()
-cv2.destoryAllWindows()
